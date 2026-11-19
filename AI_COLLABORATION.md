@@ -53,6 +53,9 @@
 - 遇到的問題：`frontend/src/services/api.js` 註解寫了 localhost 字眼，會被「前端不得出現 localhost」的掃描命中。解法：檢查腳本把「只在註解」降為警告，並建議前端改字眼。
 - 遇到的問題：離線示範資料的初始「累計省下」是 NT$215，後端種子是 NT$245，兩種網址的畫面數字不一致。已回報 PM。
 
+- [T+14] GitHub Pages 發布前驗證：把 e2e 勾選組合改成「舒肥雞胸肉＋牛奶」（會一起入菜），新增 `--mode ghpages`（dist 放暫存資料夾的 `fridge-again/` 子路徑、`/api/*` 回 404、測完刪除暫存資料夾），並加入新增食材、過期高風險品食安提示、標記丟掉、css/js 200、無失敗資源載入等檢查。flask 30、static 29、ghpages 31，共 90 項全過。新增 `check_and_pack.py --scan-dist` 掃描 dist 沒有金鑰、token、localhost。
+- 遇到的問題：ghpages 暫存資料夾刪不掉（Windows 錯誤 5），原因是從 OneDrive 複製來的檔案帶唯讀屬性；解法：刪除時先改成可寫再刪。另外 css/js 的重新整理後 304 一開始被誤判為失敗，改成「每個檔至少一次 200，其餘只允許 304」。
+
 ## 遇到的問題與解法
 
 | 問題 | 誰發現 | 解法 |

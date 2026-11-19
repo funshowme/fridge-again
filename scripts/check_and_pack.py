@@ -2,6 +2,7 @@
 用法：
   python scripts/check_and_pack.py            只檢查（不打包）
   python scripts/check_and_pack.py --pack     檢查通過後打包到 release/fridge-again.zip
+  python scripts/check_and_pack.py --scan-dist  只掃描 dist/（金鑰、token、localhost）
 結束碼：0 = 全部通過（可有警告）；1 = 有錯誤。
 """
 import os
@@ -23,6 +24,7 @@ SECRET_PATTERNS = [
     ("Google API key", re.compile(r"\bAIza[0-9A-Za-z_\-]{30,}")),
     ("AWS key", re.compile(r"\bAKIA[0-9A-Z]{16}\b")),
     ("GitHub token", re.compile(r"\b(ghp|gho|ghs|github_pat)_[A-Za-z0-9_]{20,}")),
+    ("Slack token", re.compile(r"xox[abprs]-[A-Za-z0-9\-]{10,}")),
     ("私鑰", re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----")),
     ("Bearer token", re.compile(r"Bearer\s+[A-Za-z0-9._\-]{20,}")),
     ("api_key 指派真實值", re.compile(r"(?i)\b(api[_-]?key|secret|token|password)\s*[=:]\s*['\"][A-Za-z0-9_\-./+]{12,}['\"]")),
@@ -185,7 +187,28 @@ def pack(files):
     print(f"zip：{rel(ZIP_PATH)}，{len(names)} 個檔案，{size / 1e6:.2f}MB")
 
 
+def scan_dist_only():
+    """只掃 dist/：金鑰、token、localhost。"""
+    d = os.path.join(ROOT, "dist")
+    n = 0
+    for p in walk_dir(d):
+        n += 1
+        txt = read(p)
+        for name, pat in SECRET_PATTERNS:
+            for m in pat.finditer(txt):
+                errors.append(f"dist 疑似{name}：{rel(p)}（{m.group(0)[:6]}…）")
+        for m in re.finditer(r"localhost|127\.0\.0\.1", txt):
+            errors.append(f"dist 出現 {m.group(0)}：{rel(p)}")
+    print(f"[dist 掃描] 檔案 {n} 個：", ", ".join(sorted(os.listdir(os.path.join(d, 'assets')))) if os.path.isdir(os.path.join(d, 'assets')) else "")
+    for e in errors:
+        print("[錯誤]", e)
+    print("結果：", "通過（沒有金鑰、token、localhost）" if not errors else f"失敗（{len(errors)}）")
+    sys.exit(1 if errors else 0)
+
+
 def main():
+    if "--scan-dist" in sys.argv:
+        scan_dist_only()
     do_pack = "--pack" in sys.argv
     check_env_files()
     check_secrets()

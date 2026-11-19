@@ -1,0 +1,31 @@
+html {
+  -webkit-text-size-adjust: 100%;
+  background-color: var(--bg-canvas);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family-body);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background: radial-gradient(circle at top center, #FFF9EC 0%, var(--bg-canvas) 65%);
+  min-height: 100dvh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

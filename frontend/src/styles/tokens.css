@@ -1,0 +1,74 @@
+/* ==========================================================================
+   FridgeAgain (冰箱第二春) — Astryx Theme Overrides + Domain Design Tokens
+   Built on top of Meta Astryx (@astryxdesign/core + @astryxdesign/theme-neutral)
+   ========================================================================== */
+
+:root,
+[data-astryx-theme="neutral"] {
+  /* --- Astryx Theme Token Overrides (Warm Kitchen Cream + Botanical Rescue Green) --- */
+  --font-family-body: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", "Hiragino Sans", system-ui, -apple-system, sans-serif;
+  --font-family-heading: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", "Hiragino Sans", system-ui, -apple-system, sans-serif;
+
+  --color-background-body: #FAF6EE;
+  --color-background-surface: #FFFFFF;
+  --color-background-card: #FFFFFF;
+  --color-background-muted: #F3ECE0;
+  --color-accent: #15803D;
+  --color-accent-muted: #DCFCE7;
+  --radius-element: 12px;
+  --radius-container: 16px;
+
+  /* --- Domain Semantic Tokens --- */
+  --bg-canvas: #FAF6EE;
+  --bg-surface: #FFFFFF;
+  --bg-surface-subtle: #FFFDF9;
+  --bg-muted: #F2EADF;
+
+  --text-primary: #18181B;
+  --text-secondary: #57534E;
+  --text-muted: #78716C;
+  --text-inverse: #FFFFFF;
+
+  --border-subtle: #EDE4D8;
+  --border-default: #E2D5C3;
+
+  --brand-primary: #15803D;
+  --brand-primary-dark: #116630;
+  --brand-primary-soft: #F0FDF4;
+  --brand-primary-border: #BBF7D0;
+
+  --accent-warm: #D9531E;
+  --accent-warm-dark: #B44118;
+  --accent-warm-soft: #FFF7ED;
+  --accent-warm-border: #FED7AA;
+
+  /* Urgency traffic-light semantic tokens */
+  --urgency-red-text: #B91C1C;
+  --urgency-red-accent: #DC2626;
+  --urgency-red-bg: #FEF2F2;
+  --urgency-red-border: #FECACA;
+
+  --urgency-yellow-text: #B45309;
+  --urgency-yellow-accent: #D97706;
+  --urgency-yellow-bg: #FFFBEB;
+  --urgency-yellow-border: #FDE68A;
+
+  --urgency-green-text: #15803D;
+  --urgency-green-accent: #16A34A;
+  --urgency-green-bg: #F0FDF4;
+  --urgency-green-border: #BBF7D0;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 9999px;
+
+  --shadow-xs: 0 1px 2px rgba(45, 42, 38, 0.05);
+  --shadow-sm: 0 2px 8px rgba(45, 42, 38, 0.06), 0 1px 2px rgba(45, 42, 38, 0.04);
+  --shadow-md: 0 8px 24px rgba(45, 42, 38, 0.09), 0 2px 6px rgba(45, 42, 38, 0.04);
+  --shadow-float: 0 12px 32px rgba(24, 24, 27, 0.16), 0 2px 8px rgba(24, 24, 27, 0.08);
+
+  --shell-max-width: 480px;
+  --transition-fast: 150ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --transition-normal: 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
